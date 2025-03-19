@@ -13,7 +13,6 @@
 
 	export let saveSettings: Function;
 
-	let backgroundImageUrl = null;
 	let inputFiles = null;
 	let filesInputElement;
 
@@ -248,7 +247,6 @@
 			defaultModelId = $config.default_models.split(',')[0];
 		}
 
-		backgroundImageUrl = $settings.backgroundImageUrl ?? null;
 		webSearch = $settings.webSearch ?? null;
 	});
 </script>
@@ -260,34 +258,6 @@
 		dispatch('save');
 	}}
 >
-	<input
-		bind:this={filesInputElement}
-		bind:files={inputFiles}
-		type="file"
-		hidden
-		accept="image/*"
-		on:change={() => {
-			let reader = new FileReader();
-			reader.onload = (event) => {
-				let originalImageUrl = `${event.target.result}`;
-
-				backgroundImageUrl = originalImageUrl;
-				saveSettings({ backgroundImageUrl });
-			};
-
-			if (
-				inputFiles &&
-				inputFiles.length > 0 &&
-				['image/gif', 'image/webp', 'image/jpeg', 'image/png'].includes(inputFiles[0]['type'])
-			) {
-				reader.readAsDataURL(inputFiles[0]);
-			} else {
-				console.log(`Unsupported File Type '${inputFiles[0]['type']}'.`);
-				inputFiles = null;
-			}
-		}}
-	/>
-
 	<div class=" space-y-3 overflow-y-scroll max-h-[28rem] lg:max-h-full">
 		<div>
 			<div class=" mb-1.5 text-sm font-medium">{$i18n.t('UI')}</div>
@@ -573,33 +543,7 @@
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
 					<div class=" self-center text-xs">
-						{$i18n.t('Chat Background Image')}
-					</div>
-
-					<button
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							if (backgroundImageUrl !== null) {
-								backgroundImageUrl = null;
-								saveSettings({ backgroundImageUrl });
-							} else {
-								filesInputElement.click();
-							}
-						}}
-						type="button"
-					>
-						{#if backgroundImageUrl !== null}
-							<span class="ml-2 self-center">{$i18n.t('Reset')}</span>
-						{:else}
-							<span class="ml-2 self-center">{$i18n.t('Upload')}</span>
-						{/if}
-					</button>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs">{$i18n.t('Allow User Location')}</div>
+						{$i18n.t('Allow User Location')}</div>
 
 					<button
 						class="p-1 px-3 text-xs flex rounded-sm transition"
