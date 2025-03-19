@@ -1,7 +1,7 @@
 import { browser, dev } from '$app/environment';
 // import { version } from '../../package.json';
 
-export const APP_NAME = 'Open WebUI';
+export const APP_NAME = 'Singletruth Assistant';
 
 export const WEBUI_HOSTNAME = browser ? (dev ? `${location.hostname}:8080` : ``) : '';
 export const WEBUI_BASE_URL = browser ? (dev ? `http://${WEBUI_HOSTNAME}` : ``) : ``;
@@ -13,8 +13,12 @@ export const AUDIO_API_BASE_URL = `${WEBUI_BASE_URL}/api/v1/audio`;
 export const IMAGES_API_BASE_URL = `${WEBUI_BASE_URL}/api/v1/images`;
 export const RETRIEVAL_API_BASE_URL = `${WEBUI_BASE_URL}/api/v1/retrieval`;
 
-export const WEBUI_VERSION = APP_VERSION;
-export const WEBUI_BUILD_HASH = APP_BUILD_HASH;
+// These values are typically replaced during build
+declare const APP_VERSION: string;
+declare const APP_BUILD_HASH: string;
+
+export const WEBUI_VERSION = typeof APP_VERSION !== 'undefined' ? APP_VERSION : '0.0.0';
+export const WEBUI_BUILD_HASH = typeof APP_BUILD_HASH !== 'undefined' ? APP_BUILD_HASH : 'dev';
 export const REQUIRED_OLLAMA_VERSION = '0.1.16';
 
 export const SUPPORTED_FILE_TYPE = [

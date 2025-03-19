@@ -106,9 +106,9 @@ for source in log_sources:
 log.setLevel(SRC_LOG_LEVELS["CONFIG"])
 
 
-WEBUI_NAME = os.environ.get("WEBUI_NAME", "Open WebUI")
-if WEBUI_NAME != "Open WebUI":
-    WEBUI_NAME += " (Open WebUI)"
+WEBUI_NAME = os.environ.get("WEBUI_NAME", "Singletruth Assistant")
+if WEBUI_NAME != "Singletruth Assistant" and "Singletruth Assistant" not in WEBUI_NAME:
+    WEBUI_NAME += " (Singletruth Assistant)"
 
 WEBUI_FAVICON_URL = "https://openwebui.com/favicon.png"
 

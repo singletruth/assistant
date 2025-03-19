@@ -23,7 +23,7 @@ body:
     id: issue-check
     attributes:
       label: Check Existing Issues
-      description: Confirm that you’ve checked for existing reports before submitting a new one.
+      description: Confirm that you've checked for existing reports before submitting a new one.
       options:
         - label: I have searched the existing issues and discussions.
           required: true
@@ -44,10 +44,11 @@ body:
       required: true
 
   - type: input
-    id: open-webui-version
+    id: version
     attributes:
-      label: Open WebUI Version
-      description: Specify the version (e.g., v0.3.11)
+      label: Singletruth Assistant Version
+      description: What version of Singletruth Assistant are you running?
+      placeholder: "ex: v0.1.54"
     validations:
       required: true
 
