@@ -569,6 +569,9 @@
 	<title>{$WEBUI_NAME}</title>
 	<link crossorigin="anonymous" rel="icon" href="{WEBUI_BASE_URL}/static/favicon.png" />
 
+	<!-- Theme CSS files -->
+	<link rel="stylesheet" type="text/css" href="/themes/singletruth.css" />
+	
 	<!-- rosepine themes have been disabled as it's not up to date with our latest version. -->
 	<!-- feel free to make a PR to fix if anyone wants to see it return -->
 	<!-- <link rel="stylesheet" type="text/css" href="/themes/rosepine.css" />
@@ -596,7 +599,9 @@
 			? window.matchMedia('(prefers-color-scheme: dark)').matches
 				? 'dark'
 				: 'light'
-			: 'light'}
+			: $theme === 'singletruth'
+				? 'light' // Use light theme for toasts with singletruth
+				: 'light'}
 	richColors
 	position="top-right"
 />

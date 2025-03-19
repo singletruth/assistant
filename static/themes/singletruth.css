@@ -1,0 +1,66 @@
+/* Singletruth Theme - Light theme with #f0f4f8 instead of gray */
+.singletruth {
+  /* Base colors */
+  --color-primary: #f0f4f8;
+  
+  /* Color palette adapted for the app's gray scale system */
+  --color-gray-50: #ffffff;  /* Lightest background */
+  --color-gray-100: #f0f4f8; /* Light background */
+  --color-gray-200: #e1eaf3; /* Light borders */
+  --color-gray-300: #d2dfee; /* Light accents */
+  --color-gray-400: #c3d5e9; /* Medium accents */
+  --color-gray-500: #b0c8e0; /* Primary color */
+  --color-gray-600: #8eafd0; /* Medium text */
+  --color-gray-700: #6d97c0; /* Strong accents */
+  --color-gray-800: #4c7fb0; /* Dark accents */
+  --color-gray-850: #2d6aa0; /* Darker background */
+  --color-gray-900: #1e5585; /* Dark background */
+  --color-gray-950: #0e406b; /* Darkest background */
+}
+
+/* Setting specific styles for components */
+.singletruth .bg-gray-100 {
+  background-color: var(--color-gray-100);
+}
+
+.singletruth .border-gray-100 {
+  border-color: var(--color-gray-100);
+}
+
+.singletruth .text-gray-500 {
+  color: var(--color-gray-500);
+}
+
+/* Input styling */
+.singletruth input,
+.singletruth textarea,
+.singletruth select {
+  background-color: #ffffff;
+  border-color: var(--color-gray-200);
+}
+
+.singletruth input:focus,
+.singletruth textarea:focus,
+.singletruth select:focus {
+  border-color: var(--color-gray-400);
+  outline-color: var(--color-gray-400);
+}
+
+/* Button styling */
+.singletruth button.primary {
+  background-color: var(--color-gray-500);
+  color: #ffffff;
+}
+
+.singletruth button.primary:hover {
+  background-color: var(--color-gray-600);
+}
+
+/* Scrollbar customization */
+.singletruth ::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-300);
+}
+
+.singletruth ::-webkit-scrollbar-track {
+  background-color: var(--color-gray-100);
+} 
