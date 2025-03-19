@@ -3,8 +3,14 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd "$SCRIPT_DIR" || exit
 
+# Function to convert string to lowercase that works on both Linux and macOS
+to_lowercase() {
+    echo "$1" | tr '[:upper:]' '[:lower:]'
+}
+
 # Add conditional Playwright browser installation
-if [[ "${RAG_WEB_LOADER_ENGINE,,}" == "playwright" ]]; then
+RAG_WEB_LOADER_ENGINE_LOWER=$(to_lowercase "${RAG_WEB_LOADER_ENGINE}")
+if [[ "${RAG_WEB_LOADER_ENGINE_LOWER}" == "playwright" ]]; then
     if [[ -z "${PLAYWRIGHT_WS_URI}" ]]; then
         echo "Installing Playwright browsers..."
         playwright install chromium
@@ -31,12 +37,14 @@ if test "$WEBUI_SECRET_KEY $WEBUI_JWT_SECRET_KEY" = " "; then
   WEBUI_SECRET_KEY=$(cat "$KEY_FILE")
 fi
 
-if [[ "${USE_OLLAMA_DOCKER,,}" == "true" ]]; then
+USE_OLLAMA_DOCKER_LOWER=$(to_lowercase "${USE_OLLAMA_DOCKER}")
+if [[ "${USE_OLLAMA_DOCKER_LOWER}" == "true" ]]; then
     echo "USE_OLLAMA is set to true, starting ollama serve."
     ollama serve &
 fi
 
-if [[ "${USE_CUDA_DOCKER,,}" == "true" ]]; then
+USE_CUDA_DOCKER_LOWER=$(to_lowercase "${USE_CUDA_DOCKER}")
+if [[ "${USE_CUDA_DOCKER_LOWER}" == "true" ]]; then
   echo "CUDA is enabled, appending LD_LIBRARY_PATH to include torch/cudnn & cublas libraries."
   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/python3.11/site-packages/torch/lib:/usr/local/lib/python3.11/site-packages/nvidia/cudnn/lib"
 fi
