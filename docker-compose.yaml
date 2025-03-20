@@ -7,6 +7,9 @@ services:
     tty: true
     restart: unless-stopped
     image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
+    networks:
+      - openwebui_net
+      - singletruth_internal
 
   open-webui:
     build:
@@ -21,14 +24,24 @@ services:
     depends_on:
       - ollama
     ports:
-      - ${OPEN_WEBUI_PORT-3001}:8080
+      - "127.0.0.1:${OPEN_WEBUI_PORT-3001}:8080"  # Bind to localhost
     environment:
       - 'OLLAMA_BASE_URL=http://ollama:11434'
       - 'WEBUI_SECRET_KEY='
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
+    networks:
+      - openwebui_net
+      - singletruth_internal
 
 volumes:
   ollama: {}
   open-webui: {}
+
+networks:
+  openwebui_net:
+    name: openwebui_net
+    external: true
+  singletruth_internal:
+    external: true
