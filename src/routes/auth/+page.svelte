@@ -232,11 +232,10 @@
 					{:else}
 						<div class="mb-6 sm:mb-10">
 							<h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-								Welcome Back 👋
+								Welcome Back to Singletruth Assistant 👋
 							</h1>
 							<p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-								Today is a new day. It's your day. You shape it.<br>
-								Sign in to start managing your projects.
+								Your trusted data intelligence partner. Sign in to access your customized knowledge systems and harness the power of your organization's information
 							</p>
 						</div>
 
